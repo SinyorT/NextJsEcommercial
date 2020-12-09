@@ -1,6 +1,6 @@
-import moongose, { mongo } from 'mongoose'
+import mongoose from 'mongoose'
 
-const userSchema = new moongose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -31,6 +31,6 @@ const userSchema = new moongose.Schema({
 })
 
 
-let Dataset = mongoose.model.user || mongoose.model('user', userSchema)
+let Dataset = mongoose.models.user || mongoose.model('user', userSchema)
 
 export default Dataset
