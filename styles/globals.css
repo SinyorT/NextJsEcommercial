@@ -1,5 +1,7 @@
 @import './loading.css';
 
+@import './product.css';
+
 html,
 body {
   padding: 0;
