@@ -2,12 +2,15 @@ import { createContext, useEffect, useReducer } from 'react'
 import { getData } from '../utils/fetchData'
 import reducers from './Reducers'
 
+
+
 export const DataContext = createContext()
 
 
 export const DataProvider = ({ children }) => {
-    const initialState = { notify: {}, auth: {} }
+    const initialState = { notify: {}, auth: {}, cart: [] }
     const [state, dispatch] = useReducer(reducers, initialState)
+    const { cart } = state
 
 
     useEffect(() => {
@@ -26,6 +29,15 @@ export const DataProvider = ({ children }) => {
             })
         }
     }, [])
+
+    useEffect(()=>{
+        const __next__cart01_devat = JSON.parse(localStorage.getItem('__next__cart01_devat'))
+        if(__next__cart01_devat) dispatch({type:'ADD_CART',payload:__next__cart01_devat})
+    },[])
+
+    useEffect(()=>{
+        localStorage.setItem('__next__cart01_devat',JSON.stringify(cart))
+    },[cart])
 
     return (
         <DataContext.Provider value={{ state, dispatch }}>
