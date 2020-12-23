@@ -60,7 +60,9 @@ function NavBar() {
                         <li className="nav-item">
                             <Link href="/cart">
                                 <a className={"nav-link" + isActive('/cart')} href="#">
-                                    <i aria-hidden="true" className="fas fa-shopping-cart position-relative">
+                                    <i aria-hidden="true" className="fas fa-shopping-cart position-relative"
+                                    style={{ marginRight: '10px'}}
+                                    >
                                         <span className="position-absolute"
                                         style={{
                                             padding:'3px 6px',
@@ -69,7 +71,7 @@ function NavBar() {
                                             top:'-10px',
                                             right:'-10px',
                                             color:'white',
-                                            fontSize:'14px'
+                                            fontSize:'14px',
                                         }}
                                         >
                                             {cart.length}
