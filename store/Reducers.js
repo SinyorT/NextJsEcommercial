@@ -1,4 +1,4 @@
-import {ACTIONS} from "./Actions";
+import { ACTIONS } from "./Actions";
 
 const reducers = (state, action) => {
 
@@ -13,10 +13,15 @@ const reducers = (state, action) => {
                 ...state,
                 auth: action.payload
             };
-            case ACTIONS.ADD_CART:
+        case ACTIONS.ADD_CART:
+            return {
+                ...state,
+                cart: action.payload
+            };
+            case ACTIONS.ADD_MODAL:
                 return {
                     ...state,
-                    cart: action.payload
+                    modal: action.payload
                 };
         default:
             return state;
