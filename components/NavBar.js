@@ -18,27 +18,29 @@ function NavBar() {
         }
     }
 
-    const handleLogout = () =>{
-            Cookie.remove('refreshoken',{path:'api/auth/accessToken'})
-            localStorage.removeItem('firstLogin')
-            dispatch({type:'AUTH',payload:{}})
-            dispatch({type:'NOTIFY',payload:{success:"Logged out!"}})
+    const handleLogout = () => {
+        Cookie.remove('refreshoken', { path: 'api/auth/accessToken' })
+        localStorage.removeItem('firstLogin')
+        dispatch({ type: 'AUTH', payload: {} })
+        dispatch({ type: 'NOTIFY', payload: { success: "Logged out!" } })
     }
 
     const loggedRouter = () => {
         return (
             <li className="nav-item dropdown">
                 <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img src={auth.user.avatar}  alt={auth.user.avatar}
-                    style={{
-                        borderRadius:'50%',width:'30px',height:'30px',
-                        transform:'translateY(-3px)',marginRight:'3px'
-                    }}
+                    <img src={auth.user.avatar} alt={auth.user.avatar}
+                        style={{
+                            borderRadius: '50%', width: '30px', height: '30px',
+                            transform: 'translateY(-3px)', marginRight: '3px'
+                        }}
                     />
                     {auth.user.name}
-                 </a>
+                </a>
                 <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a className="dropdown-item" href="#">Profile</a>
+                    <Link href="/profile">
+                        <a className="dropdown-item" href="#">Profile</a>
+                    </Link>
                     <button className="dropdown-item" onClick={handleLogout}>Logout</button>
                 </div>
             </li>
@@ -61,33 +63,33 @@ function NavBar() {
                             <Link href="/cart">
                                 <a className={"nav-link" + isActive('/cart')} href="#">
                                     <i aria-hidden="true" className="fas fa-shopping-cart position-relative"
-                                    style={{ marginRight: '10px'}}
+                                        style={{ marginRight: '10px' }}
                                     >
                                         <span className="position-absolute"
-                                        style={{
-                                            padding:'3px 6px',
-                                            background:'#ed143dc2',
-                                            borderRadius:'50%',
-                                            top:'-10px',
-                                            right:'-10px',
-                                            color:'white',
-                                            fontSize:'14px',
-                                        }}
+                                            style={{
+                                                padding: '3px 6px',
+                                                background: '#ed143dc2',
+                                                borderRadius: '50%',
+                                                top: '-10px',
+                                                right: '-10px',
+                                                color: 'white',
+                                                fontSize: '14px',
+                                            }}
                                         >
                                             {cart.length}
                                         </span>
-                                        </i>Cart</a>
+                                    </i>Cart</a>
                             </Link>
                         </li>
 
                         {
-                            Object.keys(auth).length ===0
-                            ?  <li className="nav-item">
+                            Object.keys(auth).length === 0
+                                ? <li className="nav-item">
                                     <Link href="/signin">
                                         <a className={"nav-link" + isActive('/signin')} href="#"><i aria-hidden="true" className="fas fa-user"></i>Sign in</a>
                                     </Link>
                                 </li>
-                            : loggedRouter()
+                                : loggedRouter()
                         }
 
                     </ul>
