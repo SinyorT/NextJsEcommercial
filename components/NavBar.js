@@ -99,4 +99,17 @@ function NavBar() {
     )
 };
 
+
+export async function getServerSideProps() {
+
+    const res = await getData('product')
+   // console.log(res);
+    return {
+      props: {
+        productProps: res.products,
+        result:res.result
+      }, // will be passed to the page component as props
+    }
+  }
+
 export default NavBar;
